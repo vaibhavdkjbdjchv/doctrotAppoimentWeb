@@ -34,7 +34,7 @@ const DoctorList = () => {
         <h3 className="text-[18px] text-[#4B5563]">Simply browse through our extensive list of trusted doctors.</h3>
       </div>
 
-      <div className="w-[90%]   grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
+      <div className="w-[80%]   grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
@@ -55,7 +55,7 @@ const DoctorList = () => {
           </div>
         ))}
       </div>
-      <div className="w-[90%]  grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
+      <div className="w-[80%]  grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
