@@ -39,7 +39,7 @@ const Home = () => {
           <img src={bg} alt="" className=" bg-cover" />
         </div>
       </div>
-      <div className="w-[30%] flex flex-col gap-5">
+      <div className="w-[30%] flex flex-col gap-10">
         <h1 className="text-4xl font-bold text-center">Find by Speciality</h1>
         <p className="text-center">
           Simply browse through our extensive list of trusted doctors, schedule
@@ -47,34 +47,34 @@ const Home = () => {
         </p>
       </div>
       <div className="w-full flex justify-center">
-        <div className="flex w-[60%]  justify-evenly gap-5">
-          <div className="flex  flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+        <div className="flex w-[60%]  justify-evenly gap-10">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out  flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Dermatologist} alt="" className="w-25" />
             Dermatologist
           </div>
-          <div className="flex flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Neurologist} alt="" className="w-25" />
             Neurologist
           </div>
-          <div className="flex flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Pediatricians} alt="" className="w-25" />
             Pediatricians
           </div>
-          <div className="flex flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Gynecologist} alt="" className="w-25" />
             Gynecologist
           </div>
-          <div className="flex flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Gastroenterologist} alt="" className="w-25" />
             Gastroenterologist
           </div>
-          <div className="flex flex-col justify-center items-center capitalize py-2 font-medium text-lg">
+          <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={General_physician} alt="" className="w-25" />
             General_physician
           </div>
         </div>
       </div>
-      <div className="w-screen">
+      <div className="w-screen py-10">
         <TopDoctors />
       </div>
     </div>

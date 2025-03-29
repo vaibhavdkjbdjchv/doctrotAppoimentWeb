@@ -29,12 +29,16 @@ const DoctorList = () => {
 
   return (
     <div className="w-full flex gap-15 flex-col justify-center items-center">
-      <h2 className="text-3xl font-bold text-center">Our Doctors</h2>
-      <div className="w-[90%] grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
+      <div>
+        <h2 className="text-[40px] font-bold text-center">Top Doctors To Book</h2>
+        <h3 className="text-[18px] text-[#4B5563]">Simply browse through our extensive list of trusted doctors.</h3>
+      </div>
+
+      <div className="w-[90%]   grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
         {doctors.map((doctor) => (
           <div
             key={doctor._id}
-            className="bg-white shadow-lg w-60 h-100 flex flex-col items-center"
+            className="bg-white hover:-mt-10  hover:shadow-lg duration-500 ease-in-out border-2 border-[#C9D8FF] rounded-2xl overflow-hidden  w-70 h-105 flex flex-col"
           >
             <div className="w-full h-[65%] flex items-end justify-center bg-[#EAEFFF] ">
               <img
@@ -43,7 +47,28 @@ const DoctorList = () => {
                 className="object-center"
               />
             </div>
-            <div className="flex px-2 py-2 gap-1 flex-col justify-center items-start">
+            <div className="flex px-3 py-3 gap-1 flex-col ">
+              <p className="text-green-500 font-semibold">● Available</p>
+              <h3 className="text-lg font-bold">Dr. {doctor.name}</h3>
+              <p className="text-gray-500">{doctor.specialization}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="w-[90%]  grid grid-cols-1sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center items-center">
+        {doctors.map((doctor) => (
+          <div
+            key={doctor._id}
+            className="bg-white hover:-mt-10 duration-500 hover:shadow-lg ease-in-out border-2 border-[#C9D8FF] rounded-2xl overflow-hidden  w-70 h-105 flex flex-col"
+          >
+            <div className="w-full h-[65%] flex items-end justify-center bg-[#EAEFFF] ">
+              <img
+                src={`http://localhost:5000/uploads/${doctor.profilePhoto}`}
+                alt={doctor.name}
+                className="object-center"
+              />
+            </div>
+            <div className="flex px-3 py-3 gap-1 flex-col ">
               <p className="text-green-500 font-semibold">● Available</p>
               <h3 className="text-lg font-bold">Dr. {doctor.name}</h3>
               <p className="text-gray-500">{doctor.specialization}</p>
