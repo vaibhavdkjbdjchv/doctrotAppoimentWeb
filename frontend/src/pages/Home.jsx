@@ -74,7 +74,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen py-10">
+      <div className="w-screen py-10 flex justify-center items-center">
         <TopDoctors />
       </div>
     </div>

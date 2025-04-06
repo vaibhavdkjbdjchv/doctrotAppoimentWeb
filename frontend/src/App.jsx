@@ -5,25 +5,27 @@ import AllDoctors from "./pages/AllDoctors";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-import "@fontsource/montserrat";
-import Dashboard from "./AdminLogin/Dashboard";
+import AppRoutes from "./AdminLogin/AdminRoute";
+import DoctorList from "./pages/AllDoctors";
+import DoctorDetails from "./pages/DoctorDetails";
 
 function App() {
   return (
     <div>
       <Router>
-        <div className=""> 
+        <div className="">
           <div className="">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/AllDoctors" element={<AllDoctors />} />
+              <Route path="/AllDoctors" element={<DoctorList />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/Admin" element={<Dashboard />} />
+              <Route path="/DoctorDetails" element={<DoctorDetails />} />
             </Routes>
           </div>
         </div>
       </Router>
+      <AppRoutes />
     </div>
   );
 }
