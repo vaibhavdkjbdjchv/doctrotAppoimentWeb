@@ -9,8 +9,11 @@ import Gastroenterologist from "/public/Assets/Images/Gastroenterologist.svg";
 import General_physician from "/public/Assets/Images/General_physician.svg";
 import TopDoctors from "../../components/TopDoctors";
 import Navbar from "../../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-screen h-screen flex flex-col gap-10 items-center ">
       <div className="w-full">
@@ -30,7 +33,10 @@ const Home = () => {
                 schedule your appointment hassle-free.
               </h2>
             </div>
-            <button className="bg-white  text-black py-3 px-5 rounded-3xl">
+            <button
+              onClick={() => navigate("/AllDoctors")}
+              className="bg-white  text-black py-3 px-5 rounded-3xl"
+            >
               Book appointment →
             </button>
           </div>
@@ -74,8 +80,11 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen py-10 flex justify-center items-center">
+      <div className="w-screen py-10 flex-col flex justify-center items-center">
         <TopDoctors />
+        <div className="w-full flex justify-center">
+          <h1 className="px-10 py-3  cursor-pointer bg-gray-300 rounded-4xl">more</h1>
+        </div>
       </div>
     </div>
   );

@@ -4,24 +4,38 @@ import vector from "/public/Assets/Images/vector.png";
 import Navbar from "../../components/Navbar";
 import Slots from "../../components/Slots";
 import TimeSlots from "../../components/Timeslots";
+import { useNavigate } from "react-router-dom";
 
-const DoctorDetails = () => {
+const DoctorDetails = ({ doctors, timeSlot, selectedDate }) => {
   const { state: doctor } = useLocation();
   if (!doctor) return <p>Doctor not found 😞</p>;
   console.log(doctor);
+
+  const navigate = useNavigate();
+
+  const handleBook = () => {
+    navigate("/appointment-details", {
+      state: {
+        doctor,
+        timeSlot,
+        selectedDate,
+      },
+    });
+  };
+
   return (
     <div className="w-screen h-screen fontUse ">
       <Navbar />
-      <div className="w-full  h-full flex flex-col items-center justify-center">
-        <div className="w-[80%]  h-[50%] px-5 py-10 flex justify-start gap-10 items-center ">
-          <div className="w-[23%] overflow-hidden h-[85%] flex justify-center bg-[#5F6FFF] rounded-2xl items-end">
+      <div className="w-full  h-[90%] flex flex-col items-center">
+        <div className="w-[80%] h-[50%] px-5 py-10 flex justify-start gap-10 items-center ">
+          <div className="w-[23%] h-[100%] flex justify-center bg-[#5F6FFF] rounded-2xl items-end">
             <img
               src={`http://localhost:5000/uploads/${doctor.profilePhoto}`}
               alt={doctor.name}
-              className="h-[85%]"
+              className="h-[95%]"
             />
           </div>
-          <div className="w-[70%] border-gray-600 border rounded-2xl h-[85%] flex flex-col gap-2 px-5 py-10 justify-start items-start">
+          <div className="w-[70%] border-gray-600 border rounded-2xl h-[100%] flex flex-col gap-2 px-5 py-10 justify-center items-start">
             <h1 className="text-3xl font-bold flex items-center gap-2 mt-4">
               Dr. {doctor.name} <img src={vector} alt="verified" />
             </h1>
@@ -53,15 +67,20 @@ const DoctorDetails = () => {
             </h1>
           </div>
         </div>
-        <div className="w-[80%] h-full flex justify-end">
-          <div className="w-[74%] h-100 ">
+        <div className="w-[80%] h-[50%] flex justify-end">
+          <div className="w-[74%] ">
             <h1 className="text-2xl text-[#565656] font-bold fontUse">
               Booking Slot
             </h1>
             <div className="w-full flex flex-col items-center justify-center">
               {/* <Slots /> */}
               <TimeSlots />
-              <button className="bg-[#5F6FFF] text-white px-20 py-3 hover:bg-transparent hover:border cursor-pointer border-[#5F6FFF]  duration-500 hover:text-[#5F6FFF] rounded-4xl"  >Book an appointment</button>
+              <button
+                onClick={handleBook}
+                className="bg-[#5F6FFF] text-white px-20 py-3 hover:bg-transparent hover:border cursor-pointer border-[#5F6FFF]  duration-500 hover:text-[#5F6FFF] rounded-4xl"
+              >
+                Book an appointment
+              </button>
             </div>
           </div>
         </div>

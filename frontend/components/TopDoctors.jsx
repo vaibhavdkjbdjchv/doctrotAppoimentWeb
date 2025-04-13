@@ -17,7 +17,7 @@ const DoctorList = () => {
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching doctors:", error);
+        // console.error("Error fetching doctors:", error);
         setError("Failed to load doctor data.");
         setLoading(false);
       }

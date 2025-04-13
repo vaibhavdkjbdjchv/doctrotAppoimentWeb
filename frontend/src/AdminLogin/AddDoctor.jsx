@@ -6,7 +6,7 @@ const AddDoctor = () => {
     name: "",
     email: "",
     password: "",
-    specialization: "General physician",
+    specialization: "",
     education: "",
     experience: "",
     fees: "",
@@ -72,7 +72,7 @@ const AddDoctor = () => {
         name: "",
         email: "",
         password: "",
-        specialization: "General physician",
+        specialization: "",
         education: "",
         experience: "",
         fees: "",
@@ -122,17 +122,14 @@ const AddDoctor = () => {
           onChange={handleChange}
           className="p-2 border rounded"
         />
-        <select
+        <input
+          type="text"
           name="specialization"
           value={doctor.specialization}
           onChange={handleChange}
+          placeholder="Specialization"
           className="p-2 border rounded"
-        >
-          <option>General physician</option>
-          <option>Cardiologist</option>
-          <option>Dermatologist</option>
-          <option>Neurologist</option>
-        </select>
+        ></input>
 
         <input
           type="email"
@@ -160,6 +157,7 @@ const AddDoctor = () => {
           className="p-2 border rounded"
         />
         <input
+          type="text"
           name="experience"
           value={doctor.experience}
           onChange={handleChange}
