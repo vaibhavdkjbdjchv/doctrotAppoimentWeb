@@ -82,33 +82,37 @@
 
 // export default Navbar;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../public/Assets/Images/logo.png";
-import { Link, useLocation } from "react-router-dom"; // <-- for active route
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAuth0 } from "@auth0/auth0-react";
-
-import {
-  faCaretDown,
-  faCartShopping,
-  faHome,
-  faList,
-  faSearch,
-  faUser,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
-import AuthButtons from "./SaveUserToDB.jsx";
-import UserForm from "./SaveUserToDB.jsx";
-import SignLogin from "../src/pages/SignLogin.jsx";
-
+import { Link, useLocation, useNavigate } from "react-router-dom"; // <-- for active route
+import { useUser } from "../src/UserContext";
+import AppointmentDetails from "../src/pages/AppointmentDetails";
 const Navbar = () => {
   const [active, setActive] = useState(false);
+  const { user } = useUser();
   const location = useLocation(); // <-- current route
-
+  const { logout } = useUser();
   const isActive = (path) => location.pathname === path;
 
+  // const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+
+  //   if (!storedUser) {
+  //     navigate("/");
+  //   } else {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login"); // or login page
+  };
+
   return (
-    <div className="flex justify-center items-center poppins">
+    <div className=" relative flex justify-center items-center poppins">
       <nav className="w-[80%] border-b-1 py-3 h-full justify-between items-center">
         <div className="w-full py-2 flex justify-between items-center">
           {/* Logo */}
@@ -168,10 +172,48 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Auth Buttons / Avatar */}
-          <div className=" bg-[#5F6FFF] text-white px-7 fontUse py-2 rounded-4xl">
-            <Link to="/userData">Create User</Link>
-          </div>
+          {user ? (
+            <div
+              onMouseEnter={() => {
+                setActive(!active);
+              }}
+              className="cursor-pointer flex items-center gap-2 bg-[#5F6FFF] text-white px-1 fontUse py-2 rounded-4xl"
+            >
+              <span className="text-2xl w-10 text-center font-bold">
+                {user.firstName[0]}
+              </span>
+            </div>
+          ) : (
+            <div className=" bg-[#5F6FFF] text-white px-7 fontUse py-2 rounded-4xl">
+              <Link to="/userData">Create User</Link>
+            </div>
+          )}
+        </div>
+
+        <div
+          // onMouse={() => {
+          //   setActive(!active);
+          // }}
+          // onMouseLeave={() => {
+          //   setActive(!active);
+          // }}
+          className={`absolute  w-40 h-30 right-50 top-18 bg-[#eaeaec] ${
+            active ? " visible" : " hidden"
+          }`}
+        >
+          <ul className="w-full text-black font-normal h-full flex flex-col justify-evenly items-start px-5">
+            <li>
+              <Link to={"/Userdetails"}>User</Link>
+            </li>
+            <li>
+              <Link to={"/appointment-details"}>My Appointment</Link>
+            </li>
+            <li>
+              <button className="cursor-pointer" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>

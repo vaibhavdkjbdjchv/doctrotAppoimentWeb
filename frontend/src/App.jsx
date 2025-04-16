@@ -13,27 +13,33 @@ import AppointmentDetails from "./pages/AppointmentDetails";
 import RegisterForm from "../components/SaveUserToDB";
 import SignUp from "./pages/SignLogin";
 import SignUpForm from "./pages/SignLogin";
+import Login from "./pages/Login";
+import { UserProvider } from "./UserContext";
+import UserDetails from "./pages/UserDetails";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <div className="">
-          <div className="">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/AllDoctors" element={<DoctorList />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/Admin" element={<AdminPanel />} />
-              <Route path="/userData" element={<SignUpForm />} />
-              <Route path="/DoctorDetails" element={<DoctorDetails />} />
-              <Route path="/appointment-details" element={<AppointmentDetails />} />
-            </Routes>
-          </div>
-        </div>
-      </Router>
-      <AppRoutes />
+    <div >
+      <UserProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/AllDoctors" element={<DoctorList />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/Admin" element={<AdminPanel />} />
+            <Route path="/userData" element={<SignUpForm />} />
+            <Route path="/DoctorDetails" element={<DoctorDetails />} />
+            <Route
+              path="/appointment-details"
+              element={<AppointmentDetails />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Userdetails" element={<UserDetails />} />
+          </Routes>
+        </Router>
+        <AppRoutes />
+      </UserProvider>
     </div>
   );
 }

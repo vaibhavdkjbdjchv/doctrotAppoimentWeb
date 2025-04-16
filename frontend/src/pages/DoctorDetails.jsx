@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import Slots from "../../components/Slots";
 import TimeSlots from "../../components/Timeslots";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../src/UserContext";
 
 const DoctorDetails = ({ doctors, timeSlot, selectedDate }) => {
   const { state: doctor } = useLocation();
@@ -12,15 +13,36 @@ const DoctorDetails = ({ doctors, timeSlot, selectedDate }) => {
   console.log(doctor);
 
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const handleBook = () => {
-    navigate("/appointment-details", {
-      state: {
+    if (user) {
+      const newAppointment = {
         doctor,
         timeSlot,
         selectedDate,
-      },
-    });
+        bookedAt: new Date().toISOString(), // optional: track when it was booked
+      };
+
+      // Fetch existing appointments
+      const existingAppointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+      // Add new one to the list
+      existingAppointments.push(newAppointment);
+
+      // Save updated list
+      localStorage.setItem(
+        "appointments",
+        JSON.stringify(existingAppointments)
+      );
+
+      // Navigate
+      navigate("/appointment-details");
+    } else {
+      navigate("/login");
+      alert("Pls Login before Bokking appointment");
+    }
   };
 
   return (

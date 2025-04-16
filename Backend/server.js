@@ -57,6 +57,7 @@
 require("dotenv").config(); // Load .env file
 const express = require("express");
 const mongoose = require("mongoose");
+const router = express.Router();
 const cors = require("cors");
 const doctorRoutes = require("./routes/doctorRoutes");
 const User = require("./models/User"); // ✅ YOU NEED THIS!
@@ -96,6 +97,28 @@ app.post('/api/signup', async (req, res) => {
     res.status(201).json({ message: 'User created successfully!' });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err });
+  }
+});
+// API to fetch data
+app.post('/api/login', async (req, res) => {
+  const { name, password } = req.body;
+
+  try {
+    const user = await User.findOne({ name });
+    const userPassword = await User.findOne({ password });
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found!' });
+    }
+
+    if (userPassword.password !== password) {
+      return res.status(401).json({ message: 'Invalid password!' });
+    }
+
+    // If success
+    res.status(200).json({ message: 'Login successful', user });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
