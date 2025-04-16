@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar";
 import AllDoctor from "../../components/AllDoctors";
+import Footer from "../../components/Footer";
 
 const DoctorList = () => {
   return (
@@ -18,6 +19,7 @@ const DoctorList = () => {
           <AllDoctor />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

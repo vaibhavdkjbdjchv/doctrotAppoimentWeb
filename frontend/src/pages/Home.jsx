@@ -10,6 +10,7 @@ import General_physician from "../../src/Assets/Images/General_physician.svg";
 import TopDoctors from "../../components/TopDoctors";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -87,6 +88,9 @@ const Home = () => {
             more
           </h1>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const About = () => {
   return (
-    <div>
+    <div className="w-screen h-screen flex flex-col justify-between">
       <div>
         <Navbar />
       </div>
-      <section className="min-h-screen bg-white text-gray-800 px-6 md:px-20 py-16">
+      <section className=" bg-white text-gray-800 px-6 md:px-20 py-16">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4 text-blue-600">
             About EstroVerse
@@ -57,6 +58,7 @@ const About = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

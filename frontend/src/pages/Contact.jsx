@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const Contact = () => {
   return (
     <div>
       <Navbar />
-      <section className="min-h-screen bg-white text-gray-800 px-6 md:px-20 py-16">
+      <section className=" bg-white text-gray-800 px-6 md:px-20 py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-blue-600 text-center mb-4">
             Contact Us
@@ -72,6 +73,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
