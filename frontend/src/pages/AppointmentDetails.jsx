@@ -37,7 +37,7 @@ const MyAppointments = () => {
             {appointments.map((appt, index) => (
               <div
                 key={index}
-                className="w-full h-[50%] bg-white shadow-md rounded-xl overflow-hidden flex items-center gap-4 hover:shadow-lg transition"
+                className="w-full h-[50%] bg-white shadow-md rounded-xl  flex items-center gap-4 hover:shadow-lg transition"
               >
                 <img
                   src={`http://localhost:5000/uploads/${appt.doctor.profilePhoto}`}
@@ -67,13 +67,13 @@ const MyAppointments = () => {
                     </p>
                   </div>
                 </div>
-                <div className=" cursor-pointer flex w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
+                <div className="flex w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
                   <div className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg">
                     Pay Online
                   </div>
                   <div
                     onClick={() => handleCancel(index)}
-                    className=" cursor-pointer   w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg"
+                    className="w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg"
                   >
                     cancel Appointment
                   </div>
