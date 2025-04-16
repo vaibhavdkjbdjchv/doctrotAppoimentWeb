@@ -83,7 +83,8 @@
 // export default Navbar;
 
 import React, { useEffect, useState } from "react";
-import logo from "../public/Assets/Images/logo.png";
+// import logo from "/assets/logo.png";
+import logo from "../src/Assets/Images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom"; // <-- for active route
 import { useUser } from "../src/UserContext";
 import AppointmentDetails from "../src/pages/AppointmentDetails";

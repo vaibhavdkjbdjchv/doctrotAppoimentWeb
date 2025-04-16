@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../public/Assets/Images/logo.png";
+import logo from "../../src/Assets/Images/logo.png"
 function AdminNavbar() {
   return (
     <div className="w-full h-full">

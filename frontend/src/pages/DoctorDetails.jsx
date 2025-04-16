@@ -1,6 +1,6 @@
 // pages/DoctorDetails.jsx
 import { useLocation } from "react-router-dom";
-import vector from "/public/Assets/Images/vector.png";
+import vector from "../../src/Assets/Images/vector.png";
 import Navbar from "../../components/Navbar";
 import Slots from "../../components/Slots";
 import TimeSlots from "../../components/Timeslots";

@@ -1,12 +1,12 @@
 import React from "react";
-import bg from "/public/Assets/Images/homebg.png";
-import group_profiles from "/public/Assets/Images/group_profiles.png";
-import Dermatologist from "/public/Assets/Images/Dermatologist.svg";
-import Neurologist from "/public/Assets/Images/Neurologist.svg";
-import Pediatricians from "/public/Assets/Images/Pediatricians.svg";
-import Gynecologist from "/public/Assets/Images/Gynecologist.svg";
-import Gastroenterologist from "/public/Assets/Images/Gastroenterologist.svg";
-import General_physician from "/public/Assets/Images/General_physician.svg";
+import bg from "../../src/Assets/Images/homebg.png";
+import group_profiles from "../../src/Assets/Images/group_profiles.png";
+import Dermatologist from "../../src/Assets/Images/Dermatologist.svg";
+import Neurologist from "../../src/Assets/Images/Neurologist.svg";
+import Pediatricians from "../../src/Assets/Images/Pediatricians.svg";
+import Gynecologist from "../../src/Assets/Images/Gynecologist.svg";
+import Gastroenterologist from "../../src/Assets/Images/Gastroenterologist.svg";
+import General_physician from "../../src/Assets/Images/General_physician.svg";
 import TopDoctors from "../../components/TopDoctors";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +83,9 @@ const Home = () => {
       <div className="w-screen py-10 flex-col flex justify-center items-center">
         <TopDoctors />
         <div className="w-full flex justify-center">
-          <h1 className="px-10 py-3  cursor-pointer bg-gray-300 rounded-4xl">more</h1>
+          <h1 className="px-10 py-3  cursor-pointer bg-gray-300 rounded-4xl">
+            more
+          </h1>
         </div>
       </div>
     </div>
