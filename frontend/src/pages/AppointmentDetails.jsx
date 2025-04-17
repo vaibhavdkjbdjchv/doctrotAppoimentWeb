@@ -3,16 +3,14 @@ import Navbar from "../../components/Navbar";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
+
   const handleCancel = (index) => {
     const storedAppointments =
       JSON.parse(localStorage.getItem("appointments")) || [];
 
-    const updatedAppointments = storedAppointments.filter(
-      (_, i) => i !== index
-    );
+    const updatedAppointments = storedAppointments.filter((_, i) => i !== index);
 
     localStorage.setItem("appointments", JSON.stringify(updatedAppointments));
-
     setAppointments(updatedAppointments); // update UI too
   };
 
@@ -37,15 +35,15 @@ const MyAppointments = () => {
             {appointments.map((appt, index) => (
               <div
                 key={index}
-                className="w-full h-[50%] bg-white shadow-md rounded-xl overflow-hidden  flex items-center gap-4 hover:shadow-lg transition"
+                className="w-full bg-white shadow-md rounded-xl overflow-hidden flex items-center gap-4 hover:shadow-lg transition"
               >
                 <img
                   src={`http://localhost:5000/uploads/${appt.doctor.profilePhoto}`}
                   alt={appt.doctor.name}
-                  className="w-[20%] bg-[#5964f8] object-cover"
+                  className="w-[20%] h-full object-cover bg-[#5964f8]"
                 />
 
-                <div className="flex-1">
+                <div className="flex-1 py-4">
                   <h2 className="text-xl font-semibold text-[#222]">
                     Dr. {appt.doctor.name}
                   </h2>
@@ -53,7 +51,7 @@ const MyAppointments = () => {
                     {appt.doctor.specialization}
                   </p>
 
-                  <div className="text-sm text-gray-700">
+                  <div className="text-sm text-gray-700 space-y-1">
                     <p>
                       <span className="font-medium">Date:</span>{" "}
                       {appt.selectedDate}
@@ -65,17 +63,21 @@ const MyAppointments = () => {
                       <span className="font-medium">Location:</span>{" "}
                       {appt.doctor.address}
                     </p>
+                    <p>
+                      <span className="font-medium">Fee:</span> ₹{appt.doctor.fees}
+                    </p>
                   </div>
                 </div>
+
                 <div className="flex w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
                   <div className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg">
                     Pay Online
                   </div>
                   <div
                     onClick={() => handleCancel(index)}
-                    className="w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg"
+                    className="w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg cursor-pointer"
                   >
-                    cancel Appointment
+                    Cancel Appointment
                   </div>
                 </div>
               </div>
