@@ -37,7 +37,7 @@ const MyAppointments = () => {
             {appointments.map((appt, index) => (
               <div
                 key={index}
-                className="w-full h-[50%] bg-white shadow-md rounded-xl  flex items-center gap-4 hover:shadow-lg transition"
+                className="w-full h-[50%] bg-white shadow-md rounded-xl overflow-hidden  flex items-center gap-4 hover:shadow-lg transition"
               >
                 <img
                   src={`http://localhost:5000/uploads/${appt.doctor.profilePhoto}`}
