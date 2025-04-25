@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
+import axios from "axios";
 
 const Dashboard = () => {
   const [doctors, setDoctors] = useState([]);
@@ -7,11 +7,6 @@ const Dashboard = () => {
   const [appointedDoctors, setAppointedDoctors] = useState([]);
 
   useEffect(() => {
-    // Fetch all doctors (assuming stored in localStorage for now)
-    const storedDoctors = JSON.parse(localStorage.getItem("doctors")) || [];
-    setDoctors(storedDoctors);
-
-    // Fetch all appointments
     const storedAppointments =
       JSON.parse(localStorage.getItem("appointments")) || [];
     setAppointments(storedAppointments);
@@ -22,9 +17,24 @@ const Dashboard = () => {
     );
     setAppointedDoctors(Array.from(appointedSet));
   }, []);
+  // const [doctors, setDoctors] = useState([]);
+  // const [selectedSpecialization, setSelectedSpecialization] = useState("All");
 
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/doctors/all");
+        setDoctors(res.data);
+      } catch (err) {
+        console.error("Error fetching doctors:", err);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
+  console.log(doctors.length);
   return (
-    <div className="w-screen min-h-screen bg-[#F9FAFB] fontUse">
+    <div className="w-screen bg-[#F9FAFB] fontUse">
       <div className="max-w-5xl mx-auto py-10 px-4">
         <h1 className="text-3xl font-bold text-[#333] text-center mb-10">
           🔧 Admin Dashboard
@@ -55,7 +65,10 @@ const Dashboard = () => {
           {appointedDoctors.length > 0 ? (
             <ul className="list-disc pl-6 text-lg text-[#555]">
               {appointedDoctors.map((docName, index) => (
-                <li key={index}>{docName}</li>
+                <li key={index}>
+                  {docName}
+                  {}
+                </li>
               ))}
             </ul>
           ) : (

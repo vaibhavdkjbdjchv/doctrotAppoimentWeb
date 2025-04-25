@@ -20,7 +20,7 @@ const DoctorList = () => {
 
     fetchDoctors();
   }, []);
-
+  console.log(doctors.length);
   const specializations = [
     "All",
     ...new Set(doctors.map((doc) => doc.specialization)),

@@ -122,5 +122,19 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// routes/appointmentRoutes.j
+// router.get('/api/appointments', async (req, res) => {
+//   try {
+//     const appointments = await Appointment.find()
+//       .populate("doctor")
+//       .populate("user");
+
+//     res.status(200).json(appointments);
+//   } catch (err) {
+//     console.error("Error fetching appointments:", err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
 // 🏁 Start server
 app.listen(5000, () => console.log("🚀 Server running on port 5000"));

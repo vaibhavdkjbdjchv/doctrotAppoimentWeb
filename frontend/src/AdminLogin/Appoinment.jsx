@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import AppointmentDoctors from "../../components/AppointedDoctors";
 
-function Appoinment() {
+const AdminAppointments = () => {
   return (
-    <div className="w-screen bg-[#f8f9fd] h-screen">
-      <div className="flex justify-center items-center h-screen">
-        Appoitment
-      </div>
+    <div className="w-screen ">
+      <AppointmentDoctors />
     </div>
   );
-}
+};
 
-export default Appoinment;
+export default AdminAppointments;
