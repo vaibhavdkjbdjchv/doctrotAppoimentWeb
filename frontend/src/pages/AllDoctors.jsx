@@ -10,16 +10,18 @@ const DoctorList = () => {
       <div className="">
         <Navbar />
       </div>
-
       <div className="py-5">
-        <h1 className="text-left px-50 font-semibold poppins text-2xl py-5">
+        <h1 className="xl:text-left  text-center lg:px-50 font-semibold poppins xl:text-2xl text-3xl xl:py-5">
           Browse through the doctors specialist.
         </h1>
         <div className="mt-10">
           <AllDoctor />
         </div>
       </div>
-      <Footer />
+
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

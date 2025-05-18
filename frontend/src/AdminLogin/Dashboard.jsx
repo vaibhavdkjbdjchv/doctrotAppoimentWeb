@@ -67,7 +67,7 @@ const Dashboard = () => {
               {appointedDoctors.map((docName, index) => (
                 <li key={index}>
                   {docName}
-                  {}
+                  { }
                 </li>
               ))}
             </ul>

@@ -28,6 +28,7 @@ const AppointmentDoctors = () => {
         <div className="w-full h-full space-y-6">
           {appointments.map((appt, index) => (
             <div
+
               key={index}
               className="w-full bg-white shadow-md rounded-xl overflow-hidden flex items-center gap-4 hover:shadow-lg transition"
             >
@@ -39,7 +40,7 @@ const AppointmentDoctors = () => {
 
               <div className="flex-1 py-4">
                 <h2 className="text-xl font-semibold text-[#222]">
-                   {appt.doctor.name}
+                  {appt.doctor.name}
                 </h2>
                 <p className="text-gray-500 mb-2">
                   {appt.doctor.specialization}

@@ -21,32 +21,32 @@ const Home = () => {
         <Navbar />
       </div>
 
-      <div className="w-[80%] h-[60%] flex justify-between items-center rounded-2xl bg-[#5F6FFF]">
-        <div className="w-[50%] h-full flex justify-center">
-          <div className="h-full w-[80%] flex flex-col gap-10 justify-center items-start  text-white">
-            <h1 className=" text-4xl font-bold">
+      <div className="w-[80%] h-[60%] flex justify-between items-center  rounded-2xl bg-[#5F6FFF]">
+        <div className="md:w-[50%] h-full flex justify-center">
+          <div className="h-full  w-[80%] py-5 flex flex-col xl:gap-10 gap-5 justify-center md:items-start item-center text-white">
+            <h1 className="text-4xl md:text-left text-center font-bold">
               Book Appointment With Trusted Doctors
             </h1>
-            <div className="flex gap-5 justify-center items-center ">
-              <img src={group_profiles} alt="" className="w-25" />
-              <h2 className="text-lg font-mono font-medium">
+            <div className="flex flex-col xl:gap-5 justify-center  md:items-start items-center ">
+              <img src={group_profiles} alt="" className="xl:w-25 lg:w-20" />
+              <h2 className="xl:text-lg lg:text-md font-mono md:text-left text-center font-medium">
                 Simply browse through our extensive list of trusted doctors,
                 schedule your appointment hassle-free.
               </h2>
             </div>
             <button
               onClick={() => navigate("/AllDoctors")}
-              className="bg-white  text-black py-3 px-5 rounded-3xl"
+              className="bg-white  text-black xl:py-3 xl:px-5 lg:py-2 lg:px-3 py-1 px-2 rounded-3xl"
             >
               Book appointment →
             </button>
           </div>
         </div>
-        <div className="w-[50%]  h-full flex justify-end items-end">
+        <div className="xl:w-[50%] w-[40%] h-full md:flex hidden justify-end items-end">
           <img src={bg} alt="" className=" bg-cover" />
         </div>
       </div>
-      <div className="w-[30%] flex flex-col gap-10">
+      <div className="lg:w-[30%] w-[90%] flex flex-col gap-10">
         <h1 className="text-4xl font-bold text-center">Find by Speciality</h1>
         <p className="text-center">
           Simply browse through our extensive list of trusted doctors, schedule
@@ -54,7 +54,7 @@ const Home = () => {
         </p>
       </div>
       <div className="w-full flex justify-center">
-        <div className="flex w-[60%]  justify-evenly gap-10">
+        <div className="flex flex-wrap w-[60%] justify-evenly gap-10">
           <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out  flex-col justify-center items-center capitalize py-2 font-medium text-lg">
             <img src={Dermatologist} alt="" className="w-25" />
             Dermatologist
@@ -76,7 +76,7 @@ const Home = () => {
             Gastroenterologist
           </div>
           <div className="flex hover:-mt-10 duration-500  cursor-pointer ease-in-out flex-col justify-center items-center capitalize py-2 font-medium text-lg">
-            <img src={General_physician} alt="" className="w-25" />
+            <img src={General_physician} alt="" className="xl:w-25 w-20" />
             General_physician
           </div>
         </div>
