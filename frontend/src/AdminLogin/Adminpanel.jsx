@@ -34,21 +34,21 @@ const AdminPanel = () => {
       </div>
       <div
         onClick={() => setActive(!active)}
-        className="absolute left-5 z-50 top-20  justify-center text-4xl rounded-full  py-5 bg-white px-5"
+        className="absolute left-5 z-50 top-20 xl:hidden visible justify-center text-4xl rounded-full  py-5 bg-white px-5"
       >
-       <FontAwesomeIcon icon={faBars} />
+        <FontAwesomeIcon icon={faBars} />
       </div>
       {/* Sidebar */}
       <div className="h-full flex">
         <div
           className={`${
             active ? "hidden" : "visible"
-          } xl:w-[20%] bg-white xl:static flex border-r-1 absolute z-0 border-[#BEBEBE]  h-[90%]  top-20 justify-start`}
+          } xl:w-[20%] bg-white xl:flex  border-r-1 xl:static absolute z-0 border-[#BEBEBE] xl:h-fu h-[90%]  top-20 justify-start`}
         >
           <div>
             <nav className="w-full px-10 py-20 justify-between items-center">
               <div className="py-10 h-full flex">
-                <ul className="flex h-[30%] font-normal flex-col justify-between items-start text-black text-lg space-y-4">
+                <ul className="flex h-[30%] font-normal flex-col justify-between items- text-black text-lg space-y-4">
                   <li
                     onClick={() => setActiveComponent("Dashboard")}
                     className="cursor-pointer hover:text-blue-500"
