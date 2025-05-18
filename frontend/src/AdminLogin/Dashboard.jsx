@@ -34,7 +34,7 @@ const Dashboard = () => {
   }, []);
   console.log(doctors.length);
   return (
-    <div className="w-screen bg-[#F9FAFB] fontUse">
+    <div className="w-screen bg-[#F9FAFB] fontUse flex justify-center">
       <div className="max-w-5xl mx-auto py-10 px-4">
         <h1 className="text-3xl font-bold text-[#333] text-center mb-10">
           🔧 Admin Dashboard
