@@ -11,8 +11,8 @@ const DoctorList = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        // const res = await axios.get("http://localhost:5000/api/doctors/all");
-        const res = await axios.get("https://doctrotappoimentweb-2.onrender.com");
+        const res = await axios.get("http://localhost:5000/api/doctors/all");
+        // const res = await axios.get("https://doctrotappoimentweb-2.onrender.com");
         setDoctors(res.data);
       } catch (err) {
         console.error("Error fetching doctors:", err);
