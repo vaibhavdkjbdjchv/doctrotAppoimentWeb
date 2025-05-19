@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const doctorSchema = new mongoose.Schema({
+const doctorSchema = new Schema({
   name: { type: String, required: true },
   specialization: { type: String, required: true },
   education: { type: String, required: true },
@@ -13,4 +13,4 @@ const doctorSchema = new mongoose.Schema({
   about: { type: String },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Doctor", doctorSchema);
+export default model("Doctor", doctorSchema);

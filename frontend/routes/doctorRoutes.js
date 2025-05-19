@@ -1,6 +1,6 @@
-const express = require("express");
-const multer = require("multer");
-const Doctor = require("../models/Doctor");
+import express from "express";
+import multer from "multer";
+import Doctor from "../models/Doctor.js";
 
 const router = express.Router();
 
@@ -75,4 +75,5 @@ router.get("/all", async (req, res) => {
   }
 });
 
-module.exports = router;
+// module.exports = router;
+export default  router
