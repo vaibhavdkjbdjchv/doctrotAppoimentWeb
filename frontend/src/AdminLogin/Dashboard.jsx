@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/doctors/all");
+        const res = await axios.get("https://backend-1-i5yj.onrender.com/api/doctors/all");
         setDoctors(res.data);
       } catch (err) {
         console.error("Error fetching doctors:", err);

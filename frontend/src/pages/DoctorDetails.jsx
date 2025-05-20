@@ -52,7 +52,7 @@ const DoctorDetails = () => {
           {/* Left: Doctor Image */}
           <div className="w-[23%] flex justify-center bg-[#5F6FFF] rounded-2xl items-end">
             <img
-              src={`http://localhost:5000/uploads/${doctor.profilePhoto}`}
+              src={`https://backend-1-i5yj.onrender.com/uploads/${doctor.profilePhoto}`}
               alt={doctor.name}
               className="h-[95%]"
             />

@@ -13,7 +13,7 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/doctors", {
+    const res = await fetch("https://backend-1-i5yj.onrender.com/api/doctors", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

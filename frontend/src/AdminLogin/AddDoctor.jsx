@@ -58,7 +58,7 @@ const AddDoctor = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/doctors/add",
+        "https://backend-1-i5yj.onrender.com/api/doctors/add",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

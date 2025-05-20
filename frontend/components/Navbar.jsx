@@ -4,7 +4,11 @@ import logo from "../src/Assets/Images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom"; // <-- for active route
 import { useUser } from "../src/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCircleXmark,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -29,7 +33,9 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img src={logo} alt="Logo" className="w-9" />
-            <h1 className="text-2xl fontUse font-bold">EstroVerse</h1>
+            <h1 className="text-2xl fontUse font-bold lg:flex hidden">
+              EstroVerse
+            </h1>
           </div>
 
           {/* web View  */}
@@ -83,7 +89,7 @@ const Navbar = () => {
             </ul>
 
             {/* mobile View  */}
-            <div className="relative w-[50%] bg-amber-400 flex justify-end items-center  2xl:hidden visible">
+            <div className="relative w-[50%] bg-amber-400 flex justify-end items-center px-5  2xl:hidden visible">
               <FontAwesomeIcon
                 icon={faBars}
                 className={`${
@@ -107,7 +113,7 @@ const Navbar = () => {
               } w-full left-0  py-15  absolute flex justify-center overflow-hidden duration-700 ease-in-out`}
             >
               <div
-                className={ `2xl:hidden  w-full h-full top-0 z-0 absolute bg-[#000000ad] backdrop-blur-lg`}
+                className={`2xl:hidden  w-full h-full top-0 z-0 absolute bg-[#000000ad] backdrop-blur-lg`}
               ></div>
               <ul className="2xl:hidden z-50  gap-5 flex flex-col items-center font-medium justify-evenly text-white text-[16px]">
                 <li>
@@ -167,7 +173,7 @@ const Navbar = () => {
                     </span>
                   </div>
                 ) : (
-                  <div className=" bg-[#5F6FFF] text-white px-7 fontUse py-2 rounded-4xl">
+                  <div className=" bg-[#5F6FFF] text-white lg:px-7 fontUse lg:py-2 rounded-4xl ">
                     <Link to="/userData">Create User</Link>
                   </div>
                 )}
@@ -176,23 +182,26 @@ const Navbar = () => {
 
             {/* mobile View End  */}
           </div>
-
-          {user ? (
-            <div
-              onClick={() => {
-                setActive(!active);
-              }}
-              className="2xl:flex cursor-pointer hidden items-center gap-2 bg-[#5F6FFF] text-white px-1 fontUse py-2 rounded-4xl"
-            >
-              <span className="text-2xl w-10 text-center font-bold">
-                {user.firstName[0]}
-              </span>
-            </div>
-          ) : (
-            <div className=" bg-[#5F6FFF] text-white px-7 fontUse py-2 rounded-4xl">
-              <Link to="/userData">Create User</Link>
-            </div>
-          )}
+          <div className="2xl:flex hidden justify-between items-center ">
+            {user ? (
+              <div
+                onClick={() => {
+                  setActive(!active);
+                }}
+                className="cursor-pointer flex  items-center gap-2 bg-[#5F6FFF] text-white px-1 fontUse py-2 rounded-4xl"
+              >
+                <span className="text-2xl w-10 text-center font-bold">
+                  {user.firstName[0]}
+                </span>
+              </div>
+            ) : (
+              <div className=" bg-[#5F6FFF] text-white px-7 fontUse py-2 rounded-4xl ">
+                <Link to="/userData">
+                  Create User
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
 
         <div

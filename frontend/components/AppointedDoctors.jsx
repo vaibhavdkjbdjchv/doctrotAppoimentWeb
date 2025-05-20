@@ -33,7 +33,7 @@ const AppointmentDoctors = () => {
               className="w-full bg-white shadow-md rounded-xl overflow-hidden flex items-center gap-4 hover:shadow-lg transition"
             >
               <img
-                src={`http://localhost:5000/uploads/${appt.doctor.profilePhoto}`}
+                src={`https://backend-1-i5yj.onrender.com/uploads/${appt.doctor.profilePhoto}`}
                 alt={appt.doctor.name}
                 className="w-[20%] h-full object-cover bg-[#5964f8]"
               />
