@@ -12,7 +12,7 @@ const DoctorList = () => {
     const fetchDoctors = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/doctors/all"
+          "https://backend-1-i5yj.onrender.com/api/doctors/all"
         );
         setDoctors(response.data);
         setLoading(false);
@@ -51,7 +51,7 @@ const DoctorList = () => {
           >
             <div className="w-full border-[#C9D8FF] h-60 flex items-center justify-center bg-[#EAEFFF]">
               <img
-                src={`http://localhost:5000/uploads/${doctor.profilePhoto}`}
+                src={`https://backend-1-i5yj.onrender.com/uploads/${doctor.profilePhoto}`}
                 alt={doctor.name}
                 className="w-full h-full object-contain"
               />

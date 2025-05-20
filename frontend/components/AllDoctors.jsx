@@ -11,8 +11,8 @@ const DoctorList = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/doctors/all");
-        // const res = await axios.get("https://doctrotappoimentweb-2.onrender.com");
+        // const res = await axios.get("https://backend-1-i5yj.onrender.com/api/doctors/all");
+        const res = await axios.get("https://backend-1-i5yj.onrender.com/api/doctors/all");
         setDoctors(res.data);
       } catch (err) {
         console.error("Error fetching doctors:", err);
@@ -67,7 +67,7 @@ const DoctorList = () => {
                 <div className="">
                   <div className="w-full xl:h-[65%] flex items-end justify-center rounded-t-2xl bg-[#5F6FFF] ">
                     <img
-                      src={`http://localhost:5000/uploads/${doc.profilePhoto}`}
+                      src={`https://backend-1-i5yj.onrender.com/uploads/${doc.profilePhoto}`}
                       alt={doc.name}
                       className="h-[100%]"
                     />
