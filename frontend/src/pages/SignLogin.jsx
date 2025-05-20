@@ -16,7 +16,10 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://backend-1-i5yj.onrender.com/api/signup", form);
+      const res = await axios.post(
+        "https://backend-1-i5yj.onrender.com/api/signup",
+        form
+      );
       setMsg(res.data.message);
       setForm({ name: "", email: "", password: "" });
     } catch (err) {
@@ -71,9 +74,7 @@ const SignUpForm = () => {
           Sign Up
         </button>
 
-        {msg && (
-          <p className="text-center text-sm text-gray-600 mt-2">{msg}</p>
-        )}
+        {msg && <p className="text-center text-sm text-gray-600 mt-2">{msg}</p>}
 
         <p className="text-sm text-center text-gray-500 mt-4">
           Already have an account?{" "}

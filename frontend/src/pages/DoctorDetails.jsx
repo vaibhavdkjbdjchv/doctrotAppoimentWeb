@@ -48,9 +48,9 @@ const DoctorDetails = () => {
       <Navbar />
 
       <div className="w-full flex flex-col items-center py-10">
-        <div className="w-[80%] flex gap-10">
+        <div className="w-[80%] md:flex gap-10">
           {/* Left: Doctor Image */}
-          <div className="w-[23%] flex justify-center bg-[#5F6FFF] rounded-2xl items-end">
+          <div className="xl:w-[23%] md:w-[20%] xl:h-auto h-50 flex justify-center bg-[#5F6FFF] md:rounded-2xl rounded-t-2xl items-end">
             <img
               src={`https://backend-1-i5yj.onrender.com/uploads/${doctor.profilePhoto}`}
               alt={doctor.name}
@@ -59,20 +59,20 @@ const DoctorDetails = () => {
           </div>
 
           {/* Right: Doctor Info */}
-          <div className="w-[70%] border border-gray-300 rounded-2xl p-8">
-            <h1 className="text-3xl font-bold flex items-center gap-2 mb-4">
+          <div className="xl:w-[70%] border border-gray-300 md:rounded-2xl rounded-b-2xl p-8">
+            <h1 className="xl:text-3xl text-2xl font-bold flex items-center gap-2 mb-4">
               Dr. {doctor.name} <img src={vector} alt="verified" />
             </h1>
-            <p className="text-lg text-gray-600 mb-2">
+            <p className="xl:text-lg text-gray-600 mb-2">
               {doctor.specialization} - {doctor.education}
             </p>
-            <p className="text-sm mb-4">
+            <p className="xl:text-sm mb-4">
               Experience: <strong>{doctor.experience} Years</strong>
             </p>
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="xl:text-lg text-gray-700 mb-6">
               {doctor.about || "No about info provided."}
             </p>
-            <p className="text-xl font-semibold">
+            <p className="xl:text-xl font-semibold">
               Appointment Fee: ₹{doctor.fees}
             </p>
           </div>

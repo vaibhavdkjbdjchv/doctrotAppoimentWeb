@@ -8,7 +8,9 @@ const MyAppointments = () => {
     const storedAppointments =
       JSON.parse(localStorage.getItem("appointments")) || [];
 
-    const updatedAppointments = storedAppointments.filter((_, i) => i !== index);
+    const updatedAppointments = storedAppointments.filter(
+      (_, i) => i !== index
+    );
 
     localStorage.setItem("appointments", JSON.stringify(updatedAppointments));
     setAppointments(updatedAppointments); // update UI too
@@ -35,23 +37,25 @@ const MyAppointments = () => {
             {appointments.map((appt, index) => (
               <div
                 key={index}
-                className="w-full bg-white shadow-md rounded-xl overflow-hidden flex items-center gap-4 hover:shadow-lg transition"
+                className="w-full h-full md:pb-0 pb-5 bg-white shadow-md rounded-xl overflow-hidden md:flex md:flex-row flex flex-col md:justify-between justify-center items-center  gap-4 hover:shadow-lg transition"
               >
-                <img
-                  src={`https://backend-1-i5yj.onrender.com/uploads/${appt.doctor.profilePhoto}`}
-                  alt={appt.doctor.name}
-                  className="w-[20%] h-full object-cover bg-[#5964f8]"
-                />
+                <div className="md:w-[20%] md:h-full h-60 w-full flex justify-center bg-[#5964f8]">
+                  <img
+                    src={`https://backend-1-i5yj.onrender.com/uploads/${appt.doctor.profilePhoto}`}
+                    alt={appt.doctor.name}
+                    className="h-full"
+                  />
+                </div>
 
-                <div className="flex-1 py-4">
-                  <h2 className="text-xl font-semibold text-[#222]">
+                <div className="flex flex-col md:items-start justify-center items-center py-4 md:gap-0 gap-2">
+                  <h2 className="md:text-xl text-4xl font-semibold text-[#222]">
                     Dr. {appt.doctor.name}
                   </h2>
-                  <p className="text-gray-500 mb-2">
+                  <p className="text-gray-500 md:text-lg text-3xl mb-2">
                     {appt.doctor.specialization}
                   </p>
 
-                  <div className="text-sm text-gray-700 space-y-1">
+                  <div className="md:text-sm text-lg text-gray-700 space-y-1">
                     <p>
                       <span className="font-medium">Date:</span>{" "}
                       {appt.selectedDate}
@@ -64,12 +68,13 @@ const MyAppointments = () => {
                       {appt.doctor.address}
                     </p>
                     <p>
-                      <span className="font-medium">Fee:</span> ₹{appt.doctor.fees}
+                      <span className="font-medium">Fee:</span> ₹
+                      {appt.doctor.fees}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
+                <div className="flex md:w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
                   <div className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg">
                     Pay Online
                   </div>
