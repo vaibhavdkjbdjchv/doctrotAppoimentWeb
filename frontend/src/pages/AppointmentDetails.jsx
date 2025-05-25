@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
+  const navigate = useNavigate();
 
   const handleCancel = (index) => {
     const storedAppointments =
@@ -75,8 +77,20 @@ const MyAppointments = () => {
                 </div>
 
                 <div className="flex md:w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
-                  <div className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg">
-                    Pay Online
+                  <div
+                    onClick={() =>
+                      navigate("/payment", {
+                        state: {
+                          doctorName: appt.doctor.name,
+                          fee: appt.doctor.fees,
+                          date: appt.selectedDate,
+                          time: appt.timeSlot,
+                        },
+                      })
+                    }
+                    className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg cursor-pointer"
+                  >
+                    Payment
                   </div>
                   <div
                     onClick={() => handleCancel(index)}

@@ -16,6 +16,7 @@ import SignUpForm from "./pages/SignLogin";
 import Login from "./pages/Login";
 import { UserProvider } from "./UserContext";
 import UserDetails from "./pages/UserDetails";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/Userdetails" element={<UserDetails />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </Router>
         <AppRoutes />
