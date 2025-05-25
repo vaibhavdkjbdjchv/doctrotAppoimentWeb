@@ -10,17 +10,22 @@ const MyAppointments = () => {
     const storedAppointments =
       JSON.parse(localStorage.getItem("appointments")) || [];
 
+    // Remove appointment at index (adjust for reversed display)
+    // Since you show reversed list, index here corresponds to reversed
+    // So, get the real index by reversing again
+    const realIndex = storedAppointments.length - 1 - index;
+
     const updatedAppointments = storedAppointments.filter(
-      (_, i) => i !== index
+      (_, i) => i !== realIndex
     );
 
     localStorage.setItem("appointments", JSON.stringify(updatedAppointments));
-    setAppointments(updatedAppointments); // update UI too
+    setAppointments(updatedAppointments.slice().reverse());
   };
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("appointments")) || [];
-    setAppointments(stored.reverse()); // latest on top
+    setAppointments(stored.slice().reverse()); // latest on top, don't mutate original
   }, []);
 
   return (
@@ -59,45 +64,41 @@ const MyAppointments = () => {
 
                   <div className="md:text-sm text-lg text-gray-700 space-y-1">
                     <p>
-                      <span className="font-medium">Date:</span>{" "}
-                      {appt.selectedDate}
+                      <span className="font-medium">Date:</span> {appt.selectedDate}
                     </p>
                     <p>
                       <span className="font-medium">Time:</span> {appt.timeSlot}
                     </p>
                     <p>
-                      <span className="font-medium">Location:</span>{" "}
-                      {appt.doctor.address}
+                      <span className="font-medium">Location:</span> {appt.doctor.address}
                     </p>
                     <p>
-                      <span className="font-medium">Fee:</span> ₹
-                      {appt.doctor.fees}
+                      <span className="font-medium">Fee:</span> ₹{appt.doctor.fees}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex md:w-[30%] px-5 flex-col justify-evenly gap-5 items-center">
-                  <div
-                    onClick={() =>
-                      navigate("/payment", {
-                        state: {
-                          doctorName: appt.doctor.name,
-                          fee: appt.doctor.fees,
-                          date: appt.selectedDate,
-                          time: appt.timeSlot,
-                        },
-                      })
-                    }
-                    className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg cursor-pointer"
-                  >
-                    Payment
-                  </div>
-                  <div
-                    onClick={() => handleCancel(index)}
-                    className="w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg cursor-pointer"
-                  >
-                    Cancel Appointment
-                  </div>
+                  {!appt.paid ? (
+                    <>
+                      <div
+                        onClick={() => navigate(`/payment/${appointments.length - 1 - index}`)}
+                        className="w-full text-center bg-green-500 font-bold text-white px-5 py-1 rounded-lg cursor-pointer"
+                      >
+                        Payment
+                      </div>
+                      <div
+                        onClick={() => handleCancel(index)}
+                        className="w-full text-center bg-red-500 font-semibold text-white px-5 py-1 rounded-lg cursor-pointer"
+                      >
+                        Cancel Appointment
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full text-center bg-gray-400 font-semibold text-white px-5 py-1 rounded-lg cursor-not-allowed cursor-default">
+                      Payment Done
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

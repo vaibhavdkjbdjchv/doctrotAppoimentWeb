@@ -1,112 +1,161 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-const Payment = () => {
+const PaymentPage = () => {
+  const { index } = useParams();
+  const navigate = useNavigate();
+
+  const [appointment, setAppointment] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [showCODForm, setShowCODForm] = useState(false);
+
+  // COD form state
   const [codDetails, setCodDetails] = useState({
-    name: "",
     address: "",
     phone: "",
     email: "",
   });
+  const [showCODForm, setShowCODForm] = useState(false);
 
-  const handleFakePayment = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      alert("✅ Payment Successful!");
-    }, 2000);
+  useEffect(() => {
+    const storedAppointments =
+      JSON.parse(localStorage.getItem("appointments")) || [];
+    if (storedAppointments[index]) {
+      setAppointment(storedAppointments[index]);
+    }
+  }, [index]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCodDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleCODSubmit = (e) => {
     e.preventDefault();
-    console.log("COD Order Placed:", codDetails);
-    alert("✅ COD Order Placed!");
-    setCodDetails({
-      name: "",
-      address: "",
-      phone: "",
-      email: "",
-    });
+    setLoading(true);
+
+    // Simulate 2 sec loading for payment processing
+    setTimeout(() => {
+      const storedAppointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+      storedAppointments[index] = {
+        ...storedAppointments[index],
+        paid: true,
+        paymentMethod: "COD",
+        codDetails: codDetails,
+      };
+
+      localStorage.setItem("appointments", JSON.stringify(storedAppointments));
+      setLoading(false);
+      alert("COD payment successful! Your appointment is confirmed.");
+      navigate("/myappointments");
+    }, 2000);
   };
 
-  const handleCODChange = (e) => {
-    const { name, value } = e.target;
-    setCodDetails((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleOnlinePayment = () => {
+    // Just simulate payment success for now (you can expand)
+    setLoading(true);
+    setTimeout(() => {
+      const storedAppointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+      storedAppointments[index] = {
+        ...storedAppointments[index],
+        paid: true,
+        paymentMethod: "Online",
+      };
+
+      localStorage.setItem("appointments", JSON.stringify(storedAppointments));
+      setLoading(false);
+      alert("Online payment successful! Your appointment is confirmed.");
+      navigate("/myappointments");
+    }, 2000);
   };
+
+  if (!appointment) return <p>Loading appointment data...</p>;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">💳 Payment Page</h1>
+    <div className="max-w-xl mx-auto p-6 bg-white shadow rounded mt-10">
+      <h2 className="text-3xl font-bold mb-6 text-center">Payment for Appointment</h2>
 
-      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md space-y-6">
-        <button
-          onClick={handleFakePayment}
-          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded w-full transition duration-200"
-        >
-          {loading ? "Processing Payment..." : "Pay Now"}
-        </button>
+      <div className="mb-6">
+        <p><strong>Doctor:</strong> Dr. {appointment.doctor.name}</p>
+        <p><strong>Date:</strong> {appointment.selectedDate}</p>
+        <p><strong>Time:</strong> {appointment.timeSlot}</p>
+        <p><strong>Fee:</strong> ₹{appointment.doctor.fees}</p>
+      </div>
 
-        <hr className="border-gray-300" />
+      {!showCODForm ? (
+        <>
+          <button
+            onClick={handleOnlinePayment}
+            disabled={loading}
+            className="w-full mb-4 bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          >
+            {loading ? "Processing..." : "Pay Online"}
+          </button>
 
-        <button
-          onClick={() => setShowCODForm(true)}
-          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded w-full transition duration-200"
-        >
-          Cash on Delivery (COD)
-        </button>
-
-        {showCODForm && (
-          <form onSubmit={handleCODSubmit} className="space-y-4 mt-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={codDetails.name}
-              onChange={handleCODChange}
-              className="w-full border px-3 py-2 rounded"
-              required
-            />
+          <button
+            onClick={() => setShowCODForm(true)}
+            disabled={loading}
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Cash on Delivery (COD)
+          </button>
+        </>
+      ) : (
+        <form onSubmit={handleCODSubmit} className="space-y-4 mt-4">
+          <div>
+            <label className="block font-semibold mb-1">Address</label>
             <textarea
               name="address"
-              placeholder="Address"
               value={codDetails.address}
-              onChange={handleCODChange}
-              className="w-full border px-3 py-2 rounded"
+              onChange={handleInputChange}
               required
+              className="w-full border px-3 py-2 rounded"
+              placeholder="Enter your address"
             />
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Phone Number</label>
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
               value={codDetails.phone}
-              onChange={handleCODChange}
-              className="w-full border px-3 py-2 rounded"
+              onChange={handleInputChange}
               required
+              className="w-full border px-3 py-2 rounded"
+              placeholder="Enter your phone number"
+              pattern="[0-9]{10}"
+              title="Enter 10-digit phone number"
             />
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Email</label>
             <input
               type="email"
               name="email"
-              placeholder="Email"
               value={codDetails.email}
-              onChange={handleCODChange}
-              className="w-full border px-3 py-2 rounded"
+              onChange={handleInputChange}
               required
+              className="w-full border px-3 py-2 rounded"
+              placeholder="Enter your email"
             />
-            <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full transition duration-200"
-            >
-              Submit COD Order
-            </button>
-          </form>
-        )}
-      </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            {loading ? "Processing..." : "Confirm COD"}
+          </button>
+        </form>
+      )}
     </div>
   );
 };
 
-export default Payment;
+export default PaymentPage;
