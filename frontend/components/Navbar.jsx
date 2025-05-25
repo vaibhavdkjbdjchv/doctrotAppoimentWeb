@@ -81,11 +81,11 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
-              <li className="border px-3 py-1 font-sans rounded-3xl border-gray-400 text-sm">
+              {/* <li className="border px-3 py-1 font-sans rounded-3xl border-gray-400 text-sm">
                 <Link target="_blank " to="/admin">
                   Admin panel
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
             {/* mobile View  */}
