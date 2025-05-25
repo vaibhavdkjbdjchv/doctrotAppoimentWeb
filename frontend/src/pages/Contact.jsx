@@ -67,7 +67,7 @@ const Contact = () => {
           <div className="mt-12 text-center text-gray-500 text-sm">
             You can also reach us at{" "}
             <span className="text-blue-600 font-medium">
-              support@estroverse.com
+              vaibhavpan7558@gmail.com
             </span>{" "}
             ✉️
           </div>
