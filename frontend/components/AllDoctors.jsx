@@ -4,24 +4,25 @@ import { useNavigate } from "react-router-dom";
 
 const DoctorList = () => {
   const navigate = useNavigate();
-
   const [doctors, setDoctors] = useState([]);
   const [selectedSpecialization, setSelectedSpecialization] = useState("All");
+  const [loading, setLoading] = useState(true); // 👈 Loading state
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        // const res = await axios.get("https://backend-1-i5yj.onrender.com/api/doctors/all");
         const res = await axios.get("https://backend-1-i5yj.onrender.com/api/doctors/all");
         setDoctors(res.data);
+        setLoading(false); // 🔓 Done loading
       } catch (err) {
         console.error("Error fetching doctors:", err);
+        setLoading(false); // even if error, stop loading
       }
     };
 
     fetchDoctors();
   }, []);
-  console.log(doctors.length);
+
   const specializations = [
     "All",
     ...new Set(doctors.map((doc) => doc.specialization)),
@@ -33,11 +34,10 @@ const DoctorList = () => {
       : doctors.filter((doc) => doc.specialization === selectedSpecialization);
 
   return (
-    <div className="w-screen  flex justify-center items-center">
-      <div className="xl:w-[80%] w-[90%]  h-full xl:flex-row  xl:items-start items-center flex-col flex xl:justify-between justify-start  ">
+    <div className="w-screen flex justify-center items-center">
+      <div className="xl:w-[80%] w-[90%] h-full xl:flex-row xl:items-start items-center flex-col flex xl:justify-between justify-start">
         <div className="xl:w-[15%]">
-          {/* 🔍 Filter Buttons */}
-          <div className="w-full flex xl:flex-col flex-wrap  justify-center gap-3 mb-10">
+          <div className="w-full flex xl:flex-col flex-wrap justify-center gap-3 mb-10">
             {specializations.map((spec, index) => (
               <button
                 key={index}
@@ -54,41 +54,45 @@ const DoctorList = () => {
           </div>
         </div>
 
-        {/* 🧑‍⚕️ Doctor Cards */}
+        {/* 💫 Loading or Doctor Cards */}
         <div className="w-[80%] h-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {filteredDoctors.map((doc) => (
-              <div
-                // key={i}
-                key={doc._id}
-                onClick={() => navigate("/DoctorDetails", { state: doc })}
-                className="bg-white rounded-2xl border border-gray-200 shadow hover:shadow-xl  transition-all duration-300 flex flex-col justify-between"
-              >
-                <div className="">
-                  <div className="w-full xl:h-[65%] flex items-end justify-center rounded-t-2xl bg-[#5F6FFF] ">
-                    <img
-                      src={`https://backend-1-i5yj.onrender.com/uploads/${doc.profilePhoto}`}
-                      alt={doc.name}
-                      className="h-[100%]"
-                    />
-                  </div>
-                  <div className="p-5">
-                    {" "}
-                    <div className="text-green-500 flex items-center gap-1">
-                      <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                      Available
+          {loading ? (
+            <div className="w-full text-center py-20 text-lg text-gray-500 animate-pulse">
+              Fetching awesome doctors... 🩺⏳
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {filteredDoctors.map((doc) => (
+                <div
+                  key={doc._id}
+                  onClick={() => navigate("/DoctorDetails", { state: doc })}
+                  className="bg-white rounded-2xl border border-gray-200 shadow hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                >
+                  <div>
+                    <div className="w-full xl:h-[65%] flex items-end justify-center rounded-t-2xl bg-[#5F6FFF]">
+                      <img
+                        src={`https://backend-1-i5yj.onrender.com/uploads/${doc.profilePhoto}`}
+                        alt={doc.name}
+                        className="h-[100%]"
+                      />
                     </div>
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Dr. {doc.name}
-                    </h2>
-                    <p className="text-blue-600 font-medium">
-                      {doc.specialization}
-                    </p>
+                    <div className="p-5">
+                      <div className="text-green-500 flex items-center gap-1">
+                        <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                        Available
+                      </div>
+                      <h2 className="text-xl font-bold text-gray-900">
+                        Dr. {doc.name}
+                      </h2>
+                      <p className="text-blue-600 font-medium">
+                        {doc.specialization}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

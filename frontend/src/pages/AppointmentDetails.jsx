@@ -95,7 +95,7 @@ const MyAppointments = () => {
                       </div>
                     </>
                   ) : (
-                    <div className="w-full text-center bg-gray-400 font-semibold text-white px-5 py-1 rounded-lg cursor-not-allowed cursor-default">
+                    <div className="w-full text-center bg-gray-400 font-semibold text-white px-5 py-1 rounded-lg cursor-not-allowed">
                       Payment Done
                     </div>
                   )}
